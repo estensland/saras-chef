@@ -10,7 +10,7 @@ end
 # Set your application name here
 appname = "wowzDashboard"
 
-if ['solo', 'util'].include?(node[:instance_role])
+if ['solo', 'app', 'app_master'].include?(node[:instance_role])
 
   # be sure to replace "app_name" with the name of your application.
   local_user = node[:users].first
