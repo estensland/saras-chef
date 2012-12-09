@@ -1,3 +1,5 @@
+require_recipe "timezone"
+
 #execute "testing" do
 #  command %Q{
 #    echo "i ran at #{Time.now}" >> /root/cheftime
