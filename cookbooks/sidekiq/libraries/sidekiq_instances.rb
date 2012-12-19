@@ -2,8 +2,13 @@ class Chef
   class Recipe
     # Does this instance run sidekiq?
     def sidekiq_instance?
-      role = node[:instance_role]
-      role == 'solo' || role == 'eylocal' || (role == 'util' && node[:name] =~ /^sidekiq/)
+      case node[:environment][:framework_env].to_s
+      when 'staging'
+        ['app_master'].include?(node[:instance_role])
+      else
+        ['solo','util','eylocal'].include?(node[:instance_role]) && node[:name] =~ /^sidekiq/
+      end
     end
+
   end
 end

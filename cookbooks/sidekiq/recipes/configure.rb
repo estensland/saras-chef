@@ -4,23 +4,24 @@ if sidekiq_instance?
   worker_count = 1
 
   node[:applications].each do |app, data|
-    template "/etc/monit.d/sidekiq_#{app}.monitrc" do 
-      owner 'root' 
-      group 'root' 
-      mode 0644 
-      source "monitrc.conf.erb" 
-      variables({ 
+    template "/etc/monit.d/sidekiq_#{app}.monitrc" do
+      owner 'root'
+      group 'root'
+      mode 0644
+      source "monitrc.conf.erb"
+      variables({
         :num_workers => worker_count,
-        :app_name => app, 
-        :rails_env => node[:environment][:framework_env] 
-      }) 
+        :app_name => app,
+        :rails_env => node[:environment][:framework_env],
+        :user => node[:owner_name]
+      })
     end
 
     template "/engineyard/bin/sidekiq" do
       owner 'root'
-      group 'root' 
+      group 'root'
       mode 0755
-      source "sidekiq.erb" 
+      source "sidekiq.erb"
     end
 
     worker_count.times do |count|
@@ -30,10 +31,13 @@ if sidekiq_instance?
         mode 0644
         source "sidekiq.yml.erb"
         variables({
-          :require => "/data/#{app}/current"
+          :require => "/data/#{app}/current",
+          :verbose => false,
+          :concurrency => 40,
+          :queues => { 'default' => 5, 'brain' => 5, 'mail' => 2 }
         })
       end
     end
 
-  end 
+  end
 end
