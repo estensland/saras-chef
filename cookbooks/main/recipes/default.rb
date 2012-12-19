@@ -1,5 +1,5 @@
 require_recipe "timezone"
-require_recipe "sidekiq"
+#require_recipe "sidekiq"
 
 #execute "testing" do
 #  command %Q{
