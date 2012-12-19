@@ -33,8 +33,8 @@ if sidekiq_instance?
         variables({
           :require => "/data/#{app}/current",
           :verbose => false,
-          :concurrency => 40,
-          :queues => { 'default' => 5, 'brain' => 5, 'mail' => 2 }
+          :concurrency => 30,
+          :queues => { 'default' => 25 }
         })
       end
     end
