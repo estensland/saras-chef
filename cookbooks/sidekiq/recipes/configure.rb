@@ -23,7 +23,7 @@ if sidekiq_instance?
       mode 0755
       source "sidekiq.erb"
     end
-    template "/data/#{app}/shared/config/sidekiq.rb" do
+    template "/data/#{app}/current/config/sidekiq.rb" do
       owner node[:owner_name]
       group node[:owner_name]
       mode 0644
