@@ -3,6 +3,8 @@ class Chef
     # Does this instance run sidekiq?
     def sidekiq_instance?
       case node[:environment][:framework_env].to_s
+      when 'production'
+        ['app_master'].include?(node[:instance_role])
       when 'staging'
         ['solo', 'app_master'].include?(node[:instance_role])
       else
