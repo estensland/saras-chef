@@ -1,5 +1,5 @@
 require_recipe "redis"
-require_recipe "redis-yml"
+#require_recipe "redis-yml"
 require_recipe "timezone"
 require_recipe "sidekiq"
 
