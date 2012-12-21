@@ -29,8 +29,8 @@ if sidekiq_instance?
       mode 0644
       source "sidekiq.rb.erb"
       variables({
-        namespace: "'#{app}:#{node[:environment][:framework_env]}'",
-        url: "'redis://#{node['db_host']}:6379'"
+        :namespace=> "'#{app}:#{node[:environment][:framework_env]}'",
+        :url=> "'redis://#{node['db_host']}:6379'"
       })
     end
     worker_count.times do |count|
