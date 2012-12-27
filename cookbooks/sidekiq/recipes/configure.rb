@@ -51,7 +51,7 @@ if sidekiq_instance?
           :require => "/data/#{app}/current",
           :verbose => false,
           :concurrency => 30,
-          :queues => { 'default' => 25 }
+          :queues => { 'default' => 20, 'mailer' => 10 }
         })
       end
     end
