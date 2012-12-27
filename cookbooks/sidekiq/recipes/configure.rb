@@ -23,15 +23,23 @@ if sidekiq_instance?
       mode 0755
       source "sidekiq.erb"
     end
-    template "/data/#{app}/current/config/initializers/sidekiq.rb" do
+    template "/data/#{app}/shared/config/sidekiq.rb" do
       owner node[:owner_name]
       group node[:owner_name]
       mode 0644
       source "sidekiq.rb.erb"
       variables({
-        :namespace=> "'#{app}:#{node[:environment][:framework_env]}'",
-        :url=> "'redis://#{node['db_host']}:6379'"
+        :namespace=> "#{app}:#{node[:environment][:framework_env]}",
+        :url=> "redis://#{node['db_host']}:6379"
       })
+    end
+    execute "remove current sidekiq symlink" do
+      command "rm -f /data/#{app}/current/config/initializers/sidekiq.rb"
+    end
+    execute "manually symlink" do
+      command "ln -nfs /data/#{app}/shared/config/sidekiq.rb /data/#{app}/current/config/initializers/sidekiq.rb"
+      user node[:owner_name]
+      group node[:owner_name]
     end
     worker_count.times do |count|
       template "/data/#{app}/shared/config/sidekiq_#{count}.yml" do
