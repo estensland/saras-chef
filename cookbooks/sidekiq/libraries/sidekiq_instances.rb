@@ -5,7 +5,7 @@ class Chef
       case node[:environment][:framework_env].to_s
       when 'production'
         ['solo', 'app_master'].include?(node[:instance_role])
-      when 'staging'
+      when 'staging', 'beta','summer'
         ['solo', 'app_master'].include?(node[:instance_role])
       else
         ['solo','util','eylocal'].include?(node[:instance_role]) && node[:name] =~ /^sidekiq/
