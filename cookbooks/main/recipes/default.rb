@@ -1,7 +1,4 @@
-require_recipe "redis"
-#require_recipe "redis-yml"
 require_recipe "timezone"
-require_recipe "sidekiq"
 
 #execute "testing" do
 #  command %Q{
@@ -16,7 +13,7 @@ require_recipe "sidekiq"
 # include_recipe "thinking-sphinx-3"
 
 # turn on whenever (crontab scheduling gem)
-require_recipe "whenever"
+# require_recipe "whenever"
 
 # uncomment to use the collectd recipe. See cookbooks/collectd/readme.md for documentation.
 # include_recipe "collectd"
@@ -25,7 +22,7 @@ require_recipe "whenever"
 # include_recipe "ban"
 
 # uncomment to use the sidekiq recipe. See cookbooks/sidekiq/readme.md for documentation.
-# include_recipe "sidekiq"
+include_recipe "sidekiq"
 
 #uncomment to turn on memcached
 # include_recipe "memcached"
