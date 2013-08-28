@@ -3,5 +3,5 @@
 # Recipe:: default
 #
 
-require_recipe "sidekiq::configure"
-require_recipe "sidekiq::restart"
+include_recipe "sidekiq::cleanup"
+include_recipe "sidekiq::setup"
