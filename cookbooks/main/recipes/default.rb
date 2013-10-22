@@ -1,4 +1,5 @@
 require_recipe "timezone"
+require_recipe "database"
 
 #execute "testing" do
 #  command %Q{
