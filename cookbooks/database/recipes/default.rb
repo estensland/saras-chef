@@ -36,13 +36,13 @@ if ['solo', 'app_master', 'app', 'util'].include?(node[:instance_role])
       group node[:users][0][:username]
       mode 0644
       variables({
-        environment: node[:environment][:framework_env],
-        adapter:     'postgresql',
-        database:    app[:database_name],
-        username:    node[:users][0][:username],
-        password:    node[:users][0][:password],
-        host:        node[:db_host],
-        pool:        30
+        :environment => node[:environment][:framework_env],
+        :adapter     => 'postgresql',
+        :database    => app[:database_name],
+        :username    => node[:users][0][:username],
+        :password    => node[:users][0][:password],
+        :host        => node[:db_host],
+        :pool        => 30
       })
     end
   end
