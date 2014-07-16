@@ -19,6 +19,7 @@ default[:sidekiq] = {
   # Queues
   :queues => {
     # :queue_name => priority
+    :import => 50,
     :default => 25,
     :mixpanel => 10,
     :salesforce => 5
