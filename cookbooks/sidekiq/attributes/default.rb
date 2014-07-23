@@ -22,6 +22,7 @@ default[:sidekiq] = {
     :import => 50,
     :default => 25,
     :mixpanel => 10,
+    :airbrake => 10,
     :salesforce => 5
   },
 
