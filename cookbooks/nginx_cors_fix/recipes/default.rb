@@ -11,12 +11,12 @@ if ['app_master', 'app', 'solo'].include?(node[:instance_role])
     end
 
     execute "add header to conf" do
-      command "sed -i '/error_log \/var\/log\/engineyard\/nginx\/#{app_name}.error.log notice;/r /tmp/location.block' /etc/nginx/servers/#{app_name}.conf"
-      not_if "grep -q Access-Control-Allow-Origin /etc/nginx/servers/#{app_name}.conf"
+      command "sed -i '/error_log \/var\/log\/engineyard\/nginx\/#{app[:name]}.error.log notice;/r /tmp/location.block' /etc/nginx/servers/#{app[:name]}.conf"
+      not_if "grep -q Access-Control-Allow-Origin /etc/nginx/servers/#{app[:name]}.conf"
     end
     execute "add header to ssl conf" do
-      command "sed -i '/error_log \/var\/log\/engineyard\/nginx\/#{app_name}.error.log notice;/r /tmp/location.block' /etc/nginx/servers/#{app_name}.ssl.conf"
-      not_if "grep -q Access-Control-Allow-Origin /etc/nginx/servers/#{app_name}.ssl.conf"
+      command "sed -i '/error_log \/var\/log\/engineyard\/nginx\/#{app[:name]}.error.log notice;/r /tmp/location.block' /etc/nginx/servers/#{app[:name]}.ssl.conf"
+      not_if "grep -q Access-Control-Allow-Origin /etc/nginx/servers/#{app[:name]}.ssl.conf"
     end
 
   end
