@@ -1,5 +1,6 @@
 require_recipe "timezone"
 require_recipe "database"
+require_recipe "nginx_cors_fix"
 
 #execute "testing" do
 #  command %Q{
