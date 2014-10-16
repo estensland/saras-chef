@@ -65,7 +65,7 @@ if ['util'].include?(node[:instance_role])
         :pidfile => node[:redis][:pidfile],
         :logfile => node[:redis][:basename],
         :port => node[:redis][:bindport],
-        :bin_path
+        :bin_path => bin_path
       })
     end
 
