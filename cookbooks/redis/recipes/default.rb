@@ -47,6 +47,13 @@ if ['util'].include?(node[:instance_role])
       })
     end
 
+    # redis-server is in /usr/bin on stable-v2, /usr/sbin for stable-v4
+    if Chef::VERSION[/^0.6/]
+      bin_path = "/usr/bin/redis-server"
+    else
+      bin_path = "/usr/sbin/redis-server"
+    end
+
     template "/data/monit.d/redis_util.monitrc" do
       owner 'root'
       group 'root'
@@ -58,6 +65,7 @@ if ['util'].include?(node[:instance_role])
         :pidfile => node[:redis][:pidfile],
         :logfile => node[:redis][:basename],
         :port => node[:redis][:bindport],
+        :bin_path
       })
     end
 
