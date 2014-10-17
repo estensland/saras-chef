@@ -111,7 +111,7 @@ include_recipe "redis"
 
 #enable Extension modules for a given Postgresql database
 if ['solo','db_master', 'db_slave'].include?(node[:instance_role])
-  # Extensions that support both Postgres 9.0, 9.1 and 9.2
+  # Extensions that support Postgres >= 9.0
   # postgresql9_autoexplain "dbname"
   # postgresql9_btree_gin "dbname"
   # postgresql9_btree_gist "dbname"
@@ -135,7 +135,7 @@ if ['solo','db_master', 'db_slave'].include?(node[:instance_role])
   # PostGis 1.5 (use with versions 9.0, 9.1, 9.2)
   # postgresql9_postgis "dbname"
 
-  # PostGis 2.0 (use with version 9.2)
+  # PostGis 2.0 (use with versions >= 9.2)
   # postgresql9_postgis2 "dbname"
   # postgresql9_seg "dbname"
   # postgresql9_sslinfo "dbname"
