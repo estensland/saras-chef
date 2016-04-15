@@ -3,8 +3,8 @@
 # Recipe:: default
 #
 
-# if (['util'].include?(node[:instance_role]) && node[:name] == 'redis') || (['solo','app_master'].include?(node[:instance_role]))
-if ['solo','app_master'].include?(node[:instance_role])
+# if ['solo','app_master'].include?(node[:instance_role])
+if (['util'].include?(node[:instance_role]) && node[:name] == 'redis') || (['solo','app_master'].include?(node[:instance_role]))
   sysctl "Enable Overcommit Memory" do
     variables 'vm.overcommit_memory' => 1
   end
